@@ -6,7 +6,18 @@ import { AppService } from './app.service';
 import config from './ormconfig';
 
 @Module({
-  imports: [UserModule, TypeOrmModule.forRoot(config)],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'test',
+      entities: [],
+      synchronize: true,
+    }),
+    UserModule, TypeOrmModule.forRoot(config)],
   controllers: [AppController],
   providers: [AppService],
 })
