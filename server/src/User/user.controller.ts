@@ -14,7 +14,7 @@ import {
 } from '@nestjs/common';
 import { Controller, Get, Param } from '@nestjs/common';
 import { LocalAuthGuard } from 'src/Auth/local.auth.guard';
-import { UserLoginDto } from 'src/Dto/user.dto';
+import { UserLoginDto } from '../Dto/user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -54,4 +54,6 @@ export class UserController {
     return this.userService.reassign(id, email, username, password)
   }
 }
+
+
 
