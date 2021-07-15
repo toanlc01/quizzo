@@ -10,11 +10,14 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
-  Response
+  Response,
+  HttpException,
+  BadRequestException,
 } from '@nestjs/common';
 import { Controller, Get, Param } from '@nestjs/common';
 import { LocalAuthGuard } from 'src/Auth/local.auth.guard';
-import { UserLoginDto } from '../Dto/user.dto';
+
+import { SignUpDto, UserLoginDto } from 'src/Dto/user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -25,8 +28,11 @@ export class UserController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   @UsePipes(new ValidationPipe())
-  login(@Body() loginDto: UserLoginDto, @Request() req, @Response() res): Promise<User|undefined> {
-    return res.json(req.user);
+  login(
+    @Body() loginDto: UserLoginDto,
+    @Request() req,
+  ): Promise<User> {
+    return req.user;
   }
 
   @Get()
@@ -54,6 +60,3 @@ export class UserController {
     return this.userService.reassign(id, email, username, password)
   }
 }
-
-
-

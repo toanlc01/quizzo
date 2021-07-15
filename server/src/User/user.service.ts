@@ -9,6 +9,7 @@ import { User } from './user.entity';
 
 import { isEmail } from 'class-validator';
 
+import { SignUpDto } from 'src/Dto/user.dto';
 
 @Injectable()
 export class UserService {
