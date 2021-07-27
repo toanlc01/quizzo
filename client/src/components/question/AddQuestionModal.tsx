@@ -82,7 +82,7 @@ const AddQuestionModal: React.FC = () => {
       answers: answers
     };
     console.log(questionForm);
-    dispatch(createQuestion(questionForm));
+    // dispatch(createQuestion(questionForm));
     setShowForm(false);
   };
 
@@ -163,6 +163,8 @@ const AddQuestionModal: React.FC = () => {
                           <Form.Control
                             type="file"
                             className="custom-file-input"
+                            // onChange={handleChange}
+                            // onBlur={handleBlur}
                           />
                         </Col>
                       </Row>
@@ -171,7 +173,9 @@ const AddQuestionModal: React.FC = () => {
                 </Row>
                 <Row>
                   <Col xs={12} lg={1}>
-                    <Dropdown>
+                    <Dropdown
+                    // onChange={handleChange} onBlur={handleBlur}
+                    >
                       <Dropdown.Toggle className="btn-type" id="dropdown-basic">
                         Type
                       </Dropdown.Toggle>
@@ -190,6 +194,8 @@ const AddQuestionModal: React.FC = () => {
                         type="text"
                         placeholder="#Tag"
                         name="tagId"
+                        // onChange={handleChange}
+                        // onBlur={handleBlur}
                       />
                     </Form.Group>
                   </Col>
