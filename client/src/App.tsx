@@ -10,11 +10,14 @@ import Dashboard from './views/Dashboard';
 import ListQuestions from './views/ListQuestions';
 import Socket from './views/Socket';
 
+import ChangePassword from './components/auth/ChangePassword';
+
 const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Router>
         <Switch>
+          <Route exact path="/changePassword" component={ChangePassword} />
           <Route exact path="/" component={LandingPage} />
           <ProtectedRoute exact path="/about" component={About} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard} />

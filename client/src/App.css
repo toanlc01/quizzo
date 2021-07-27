@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #FBF8F8;
+  background-color: #fbf8f8;
 }
 
 .App {
@@ -104,7 +104,7 @@ body {
 }
 
 .title {
-  background: -webkit-linear-gradient(80deg,#fd8927f0, #f06051);
+  background: -webkit-linear-gradient(80deg, #fd8927f0, #f06051);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -169,7 +169,10 @@ body {
   width: 90%;
 }
 
-input, input:focus, textarea:focus, select:focus {
+input,
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border: none;
   background-color: transparent;
