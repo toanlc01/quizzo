@@ -7,10 +7,20 @@ import PINField from '../components/layouts/PINField';
 import Footer from '../components/layouts/Footer';
 import { Redirect } from 'react-router';
 import { RootState } from '../store/store';
+import { SockerInit } from '../components/socket/socker';
+import { initListeners } from '../components/socket/sockerListener';
+import { updateGame } from '../store/slices/game.slice';
+import { Button } from 'react-bootstrap';
+
+export let socket: any = undefined;
 
 const LandingPage: React.FC = (props: any) => {
   const auth = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+
+  socket = SockerInit();
+  initListeners(dispatch, socket);
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch(loadUser());
@@ -21,10 +31,10 @@ const LandingPage: React.FC = (props: any) => {
   if (auth.isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
-
   return (
     <>
       <MyNavbar />
+      <Button>Join Game</Button>
       <QuizzoTitle />
       <PINField />
       <Footer />

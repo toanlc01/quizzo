@@ -9,6 +9,8 @@ import About from './views/About';
 import Dashboard from './views/Dashboard';
 import ListQuestions from './views/ListQuestions';
 import Socket from './views/Socket';
+import Room from './views/Room';
+import PlayRoom from './views/PlayRoom';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +26,8 @@ const App: React.FC = () => {
             component={ListQuestions}
           />
           <ProtectedRoute exact path="/socket" component={Socket} />
+          <ProtectedRoute exact path="/room" component={Room} />
+          <ProtectedRoute exact path="/play-room" component={PlayRoom} />
         </Switch>
       </Router>
     </Provider>

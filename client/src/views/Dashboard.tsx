@@ -9,7 +9,9 @@ const Dashboard = () => {
       <div>
         <Link to="/list-questions">List Questions</Link>
         <br />
-        <Link to="/socket">Socket</Link>
+        {/* <Link to="/socket">Socket</Link> */}
+        <br />
+        <Link to="/room">Room</Link>
       </div>
     </Container>
   );
