@@ -14,6 +14,7 @@ interface IProps {
 
 const ProtectedRoute = ({ component: Component, ...rest }: IProps) => {
   const auth = useSelector((state: RootState) => state.auth);
+  console.log(auth);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +23,7 @@ const ProtectedRoute = ({ component: Component, ...rest }: IProps) => {
     fetchData();
   }, []);
 
-  if (store.getState().auth.authLoading) {
+  if (auth.authLoading) {
     return (
       <div className="spinner-container">
         <Spinner animation="border" variant="info" />

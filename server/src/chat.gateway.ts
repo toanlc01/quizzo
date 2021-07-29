@@ -24,6 +24,12 @@ export class ChatGateway {
       role: 'host'
     });
     client.join(data.toString());
+  }
+
+  @SubscribeMessage('join-room')
+  handleJoinRoom(@MessageBody() data, @ConnectedSocket() client): void {
+    // find room
+
     console.log(this.server.sockets.adapter.rooms);
   }
 }

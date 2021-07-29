@@ -34,7 +34,6 @@ const LandingPage: React.FC = (props: any) => {
   return (
     <>
       <MyNavbar />
-      <Button>Join Game</Button>
       <QuizzoTitle />
       <PINField />
       <Footer />
