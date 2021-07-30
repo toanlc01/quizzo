@@ -11,25 +11,29 @@ import ListQuestions from './views/ListQuestions';
 import Socket from './views/Socket';
 import Room from './views/Room';
 import PlayRoom from './views/PlayRoom';
+import { Container } from 'react-bootstrap';
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <ProtectedRoute exact path="/about" component={About} />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-          <ProtectedRoute
-            exact
-            path="/list-questions"
-            component={ListQuestions}
-          />
-          <ProtectedRoute exact path="/socket" component={Socket} />
-          <ProtectedRoute exact path="/room" component={Room} />
-          <ProtectedRoute exact path="/play-room" component={PlayRoom} />
-        </Switch>
-      </Router>
+      <Container fluid>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <ProtectedRoute exact path="/about" component={About} />
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoute
+              exact
+              path="/list-questions"
+              component={ListQuestions}
+            />
+            <ProtectedRoute exact path="/socket" component={Socket} />
+            <ProtectedRoute exact path="/room" component={Room} />
+            <ProtectedRoute exact path="/play-room" component={PlayRoom} />
+            <Route exact path="/play-room-guest" component={PlayRoom} />
+          </Switch>
+        </Router>
+      </Container>
     </Provider>
   );
 };

@@ -76,9 +76,6 @@ export class TagController {
     try {
       const tag_id = req.params.tagId;
       const updatedTag = await this.tagService.update(tag_id, updateTagDto);
-      if (updateTagDto.question_id) {
-        // await
-      }
       res.json({ success: true, updatedTag: updatedTag });
     } catch (error) {
       console.log(error);
@@ -88,8 +85,16 @@ export class TagController {
     }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tagService.remove(+id);
+  @Delete(':tagId')
+  async remove(@Request() req, @Response() res) {
+    const tag_id = req.params.tagId;
+    try {
+      await this.tagService.remove(tag_id);
+      res.json({ success: true, message: 'Delete tag successfully' });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ success: false, message: 'Internal server error' });
+    }
   }
 }

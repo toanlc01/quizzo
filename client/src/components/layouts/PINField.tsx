@@ -7,7 +7,7 @@ const PINField: React.FC = () => {
   const [pin, setPin] = useState('');
 
   const handleClick = () => {
-    socket.emit('join-room', pin);
+    socket.emit('join-room', { roomId: pin });
   };
 
   const handleChange = (e: any) => {

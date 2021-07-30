@@ -4,16 +4,20 @@ import { UpdateTagDto } from './dto/update-tag.dto';
 import { Tag } from './entities/tag.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getConnection } from 'typeorm';
+import { Question } from 'src/Question/entities/question.entity';
 
 @Injectable()
 export class TagService {
   constructor(
     @InjectRepository(Tag)
-    private tagRepository: Repository<Tag>
+    private tagRepository: Repository<Tag>,
+    @InjectRepository(Question)
+    private questionRepository: Repository<Question>
   ) {}
 
   async create(createTagDto: CreateTagDto) {
-    const createdTag = await this.tagRepository.create(createTagDto);
+    const { ...newTag } = createTagDto;
+    const createdTag = await this.tagRepository.create(newTag);
     return await this.tagRepository.save(createdTag);
   }
 
@@ -38,7 +42,7 @@ export class TagService {
     return await this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tag`;
+  async remove(id: number) {
+    return await this.tagRepository.delete(id);
   }
 }

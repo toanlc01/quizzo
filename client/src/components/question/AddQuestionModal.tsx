@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPlusCircle,
-  faEdit,
-  faImage
-} from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faImage } from '@fortawesome/free-solid-svg-icons';
 import '../../css/questions/addQuestion.css';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createQuestion } from '../../store/slices/questions.slice';
-import { RootState } from '../../store/store';
-
+import { AiOutlinePlus } from 'react-icons/ai';
 const AddQuestionModal: React.FC = () => {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
@@ -66,7 +59,7 @@ const AddQuestionModal: React.FC = () => {
     ];
     const questionForm = {
       title: values.title,
-      tagId: +values.tagId,
+      tags: [],
       type: values.type,
       image: values.image,
       answers: answers
@@ -113,8 +106,8 @@ const AddQuestionModal: React.FC = () => {
           isSubmitting
         }) => (
           <Form onSubmit={handleSubmit}>
-            <Form.Label onClick={clickCreate} className="form-title">
-              Create new question <FontAwesomeIcon icon={faPlusCircle} />{' '}
+            <Form.Label onClick={clickCreate} className="form-title clickable">
+              Create new question <AiOutlinePlus className="plus-icon" />
             </Form.Label>
             {showForm && (
               <>

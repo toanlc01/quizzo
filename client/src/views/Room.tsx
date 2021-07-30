@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import LoggedInNavBar from '../components/layouts/LoggedInNavBar';
 import { SockerInit } from '../components/socket/socker';
 import { initListeners } from '../components/socket/sockerListener';
 import { RootState } from '../store/store';
@@ -11,7 +12,7 @@ const Room = () => {
 
   const { roomId, role } = game;
   const handlePlay = () => {
-    socket.emit('play-room', '1');
+    socket.emit('play-room', { roomId: '1' });
   };
 
   if (roomId && role == 'host') {
@@ -19,9 +20,10 @@ const Room = () => {
   }
 
   return (
-    <div>
+    <>
+      <LoggedInNavBar />
       <Button onClick={handlePlay}>Play Room</Button>
-    </div>
+    </>
   );
 };
 

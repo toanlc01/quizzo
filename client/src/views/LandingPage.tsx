@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from '../store/slices/auth.slice';
 import QuizzoTitle from '../components/layouts/QuizzoTitle';
 import MyNavbar from '../components/layouts/MyNavbar';
+import LoggedInNavBar from '../components/layouts/LoggedInNavBar';
 import PINField from '../components/layouts/PINField';
 import Footer from '../components/layouts/Footer';
 import { Redirect } from 'react-router';
@@ -16,6 +17,7 @@ export let socket: any = undefined;
 
 const LandingPage: React.FC = (props: any) => {
   const auth = useSelector((state: RootState) => state.auth);
+  const game = useSelector((state: RootState) => state.game);
   const dispatch = useDispatch();
 
   socket = SockerInit();
@@ -28,12 +30,13 @@ const LandingPage: React.FC = (props: any) => {
     fetchData();
   }, []);
 
-  if (auth.isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+  if (game.roomId) {
+    return <Redirect to="/play-room-guest" />;
   }
+
   return (
     <>
-      <MyNavbar />
+      {auth.isAuthenticated ? <LoggedInNavBar /> : <MyNavbar />}
       <QuizzoTitle />
       <PINField />
       <Footer />

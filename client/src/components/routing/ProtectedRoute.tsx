@@ -4,7 +4,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch, connect, useSelector } from 'react-redux';
 import { loadUser } from '../../store/slices/auth.slice';
 import store, { RootState } from '../../store/store';
-// import NavbarMenu from "../layouts/NavbarMenu";
 
 interface IProps {
   exact?: boolean;

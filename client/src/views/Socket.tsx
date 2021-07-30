@@ -42,12 +42,12 @@ const Socket = () => {
   }, []);
 
   return (
-    <Container fluid>
+    <>
       <MyNavbar />
       <div>Socket demo </div>
       <button onClick={handleSendMessage}> Send Hello Message</button>
       <ListMessages messages={[...messages].reverse()} />
-    </Container>
+    </>
   );
 };
 
