@@ -30,9 +30,9 @@ const LandingPage: React.FC = (props: any) => {
     fetchData();
   }, []);
 
-  if (game.roomId) {
-    return <Redirect to="/play-room-guest" />;
-  }
+  // if (game.roomId) {
+  //   return <Redirect to="/play-room-guest" />;
+  // }
 
   return (
     <>

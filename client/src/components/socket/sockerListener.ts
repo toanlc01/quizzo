@@ -16,8 +16,12 @@ export const initListeners = (dispatch: any, socker: any) => {
     console.log(newPlayer);
     dispatch(joinPlayer(newPlayer));
   });
-  socker.on('player-joined', (data: any) => {
-    const { roomId, role } = data;
-    dispatch(updateGame({ roomId, role }));
-  });
+
+  socker.subcribe = function (cb: any) {
+    socker.on('player-joined', (data: any) => {
+      const { roomId, role } = data;
+      dispatch(updateGame({ roomId, role }));
+      cb(null, data);
+    });
+  };
 };

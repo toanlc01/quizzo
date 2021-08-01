@@ -52,6 +52,6 @@ export class ChatGateway {
 
   @SubscribeMessage('delete-room')
   handleDeleteRoom(@MessageBody() data, @ConnectedSocket() client): void {
-    console.log(this.server.sockets.in(data.roomId));
+    console.log(this.server.sockets.adapter.rooms.get(data.roomId));
   }
 }
