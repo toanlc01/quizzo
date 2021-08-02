@@ -7,8 +7,20 @@ import '../../css/room/room.css';
 import { Dropdown } from 'react-bootstrap';
 import { RootState } from '../../store/store';
 import moment from 'moment';
+import { socket } from '../../views/LandingPage';
+import { Redirect } from 'react-router-dom';
 
 const Room = (props: { room: any }) => {
+  const game = useSelector((state: RootState) => state.game);
+
+  const handlePlay = () => {
+    socket.emit('host-create-room', { roomId: props.room.pinCode });
+  };
+
+  if (game.roomId && game.role == 'host') {
+    return <Redirect to="/play-room" />;
+  }
+
   return (
     <Card className="room">
       <Card.Body>
@@ -63,7 +75,9 @@ const Room = (props: { room: any }) => {
             </span>
           </div>
         </Card.Text>
-        <Button className="play-button">Play</Button>
+        <Button className="play-button" onClick={handlePlay}>
+          Play
+        </Button>
       </Card.Body>
     </Card>
   );

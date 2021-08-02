@@ -18,6 +18,7 @@ const HostRoom = () => {
           <div>{player.id}</div>
         ))}
       </div>
+      <div>PIN CODE: {game.roomId}</div>
       <Button onClick={handlePlay}>Play Game</Button>
     </>
   );
