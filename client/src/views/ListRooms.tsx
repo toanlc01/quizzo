@@ -42,7 +42,6 @@ const ListRooms: React.FC = () => {
     <Container fluid>
       <LoggedInNavBar />
       <SearchBar />
-      {/* <div> {content}</div> */}
 
       <Row xs={1} md={2} lg={4} className="list-room">
         {Array.from({ length: 1 }).map((_, idx) => (
@@ -51,9 +50,6 @@ const ListRooms: React.FC = () => {
           </Col>
         ))}
         {content}
-        {/* {Array.from({ length: 4 }).map((_, idx) => (
-          <Col>{content}</Col>
-        ))} */}
       </Row>
     </Container>
   );
