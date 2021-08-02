@@ -6,9 +6,12 @@ import '../../css/questions/question.css';
 import { BiTrashAlt } from 'react-icons/bi';
 import { AiOutlineEdit, AiOutlineEye } from 'react-icons/ai';
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
+import defaultImage from '../../assets/download.png';
+import moment from 'moment';
 
 const Question = (props: { question: any }) => {
   const [isExpand, setIsExpand] = useState(false);
+  const [isShowImage, setIsShowImage] = useState(false);
 
   const toggleAnswers = () => {
     setIsExpand((prevState) => {
@@ -16,6 +19,13 @@ const Question = (props: { question: any }) => {
     });
   };
 
+  const toggleImage = () => {
+    setIsShowImage((prevState) => {
+      return !prevState;
+    });
+  };
+
+  const baseUrl = 'http://localhost:5000/uploads/image/';
   return (
     <Card className="question">
       <Card.Body className="content">
@@ -53,7 +63,28 @@ const Question = (props: { question: any }) => {
               </Row>
             )}
           </div>
-          <div className="smaller-font mt-4 clickable link">Preview image</div>
+          <div
+            className="smaller-font mt-4 clickable link"
+            onClick={toggleImage}
+          >
+            Preview image
+          </div>
+
+          {/* image */}
+          {isShowImage && (
+            <div className="img" style={{ backgroundColor: '#AAA' }}>
+              <img
+                src={
+                  props.question.image !== ''
+                    ? baseUrl + props.question.image
+                    : defaultImage
+                }
+                alt=""
+                width="200"
+                height="200"
+              />
+            </div>
+          )}
         </div>
 
         {/* icon & date section */}
@@ -71,7 +102,7 @@ const Question = (props: { question: any }) => {
           </div>
 
           <div className="smaller-font date">
-            {props.question.updatedAt.toLocaleString('en-SG')}
+            {moment(props.question.updatedAt).format('DD-MM-YYYY HH:mm:ss')}
           </div>
         </div>
       </Card.Body>

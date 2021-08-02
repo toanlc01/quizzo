@@ -14,6 +14,8 @@ import HostRoom from './views/HostRoom';
 import { Container } from 'react-bootstrap';
 import PlayerRoom from './views/PlayerRoom';
 
+import ListRooms from './views/ListRooms';
+
 const App: React.FC = () => {
   return (
     <Provider store={store}>
@@ -28,6 +30,8 @@ const App: React.FC = () => {
               path="/list-questions"
               component={ListQuestions}
             />
+            <ProtectedRoute exact path="/list-rooms" component={ListRooms} />
+
             <ProtectedRoute exact path="/socket" component={Socket} />
             <ProtectedRoute exact path="/room" component={Room} />
             <ProtectedRoute exact path="/play-room" component={HostRoom} />
