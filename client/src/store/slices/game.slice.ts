@@ -5,12 +5,16 @@ import { apiUrl } from '../types';
 interface State {
   roomId: string | undefined;
   role: 'host' | 'player' | undefined;
+  userId: string | undefined;
+  username: string | undefined;
   players: any[];
 }
 
 const initialState: State = {
   roomId: undefined,
   role: undefined,
+  userId: undefined,
+  username: undefined,
   players: []
 };
 
@@ -19,16 +23,16 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     updateGame: (state, action) => {
-      state.roomId = action.payload.roomId;
-      state.role = action.payload.role;
+      state = { ...state, ...action.payload };
+      console.log(state);
+      return state;
     },
-    joinPlayer: (state, action) => {
-      console.log(action.payload);
-      state.players.push(action.payload);
+    playerJoin: (state, action) => {
+      state.players = action.payload;
     }
   },
   extraReducers: {}
 });
 
 export default gameSlice.reducer;
-export const { updateGame, joinPlayer } = gameSlice.actions;
+export const { updateGame, playerJoin } = gameSlice.actions;

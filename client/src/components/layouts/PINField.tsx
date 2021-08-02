@@ -9,7 +9,7 @@ const PINField: React.FC = () => {
   const [pin, setPin] = useState('');
 
   const handleClick = () => {
-    socket.emit('join-room', { roomId: pin });
+    socket.emit('player-join-room', { roomId: pin });
     socket.subcribe((err: any, data: any) => {
       history.push('/play-room-guest');
     });

@@ -12,7 +12,7 @@ const Room = () => {
 
   const { roomId, role } = game;
   const handlePlay = () => {
-    socket.emit('play-room', { roomId: '1' });
+    socket.emit('host-create-room', { roomId: '1' });
   };
 
   if (roomId && role == 'host') {

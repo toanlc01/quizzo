@@ -10,8 +10,9 @@ import Dashboard from './views/Dashboard';
 import ListQuestions from './views/ListQuestions';
 import Socket from './views/Socket';
 import Room from './views/Room';
-import PlayRoom from './views/PlayRoom';
+import HostRoom from './views/HostRoom';
 import { Container } from 'react-bootstrap';
+import PlayerRoom from './views/PlayerRoom';
 
 const App: React.FC = () => {
   return (
@@ -29,8 +30,8 @@ const App: React.FC = () => {
             />
             <ProtectedRoute exact path="/socket" component={Socket} />
             <ProtectedRoute exact path="/room" component={Room} />
-            <ProtectedRoute exact path="/play-room" component={PlayRoom} />
-            <Route exact path="/play-room-guest" component={PlayRoom} />
+            <ProtectedRoute exact path="/play-room" component={HostRoom} />
+            <Route exact path="/play-room-guest" component={PlayerRoom} />
           </Switch>
         </Router>
       </Container>

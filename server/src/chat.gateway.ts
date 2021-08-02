@@ -6,6 +6,8 @@ import {
   ConnectedSocket
 } from '@nestjs/websockets';
 
+let players = {};
+
 @WebSocketGateway({ path: '/api/socket' })
 export class ChatGateway {
   @WebSocketServer()
@@ -16,17 +18,19 @@ export class ChatGateway {
     client.broadcast.emit('message', message);
   }
 
-  @SubscribeMessage('play-room')
+  @SubscribeMessage('host-create-room')
   handleCreateRoom(@MessageBody() data, @ConnectedSocket() client): void {
     client.emit('created-room', {
       roomId: data.roomId,
       clientId: client.id,
       role: 'host'
     });
+    players[data.roomId] = [];
+
     client.join(data.roomId.toString());
   }
 
-  @SubscribeMessage('join-room')
+  @SubscribeMessage('player-join-room')
   handleJoinRoom(@MessageBody() data, @ConnectedSocket() client): void {
     // find room
     // Look up the room ID in the Socket.IO manager object.
@@ -35,19 +39,31 @@ export class ChatGateway {
     // If the room exists...
     if (room != undefined) {
       // attach the socket id to the data object.
-      data.mySocketId = client.id;
+      data.id = client.id;
 
       // Join the room
       client.join(data.roomId);
 
       // Emit an event notifying the clients that the player has joined the room.
       data.role = 'player';
-      this.server.sockets.in(data.roomId).emit('player-join-room', data);
+      players[data.roomId].push(data);
+      this.server.sockets
+        .in(data.roomId)
+        .emit('player-join-room', players[data.roomId]);
       client.emit('player-joined', data);
     } else {
       // Otherwise, send an error message back to the player.
       client.emit('error', { message: 'This room does not exist.' });
     }
+  }
+
+  @SubscribeMessage('player-enter-name')
+  handlePlayerEnterName(@MessageBody() data, @ConnectedSocket() client): void {
+    const player = players[data.roomId].find((user) => user.id == data.userId);
+    player.name = data.username;
+    console.log(players);
+    this.server.in(data.roomId).emit('player-join-room', players[data.roomId]);
+    client.emit('player-joined', data);
   }
 
   @SubscribeMessage('delete-room')

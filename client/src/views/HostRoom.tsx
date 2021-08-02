@@ -5,22 +5,22 @@ import LoggedInNavBar from '../components/layouts/LoggedInNavBar';
 import { RootState } from '../store/store';
 import { socket } from './LandingPage';
 
-const PlayRoom = () => {
+const HostRoom = () => {
   const game = useSelector((state: RootState) => state.game);
-  const handleDelete = () => {
-    socket.emit('delete-room', { roomId: '1' });
+  const handlePlay = () => {
+    socket.emit('play-room', { roomId: '1' });
   };
   return (
     <>
       <LoggedInNavBar />
       <div>
         {game.players?.map((player) => (
-          <div>{player.socketId}</div>
+          <div>{player.id}</div>
         ))}
       </div>
-      <Button onClick={handleDelete}>Delete Room</Button>
+      <Button onClick={handlePlay}>Play Game</Button>
     </>
   );
 };
 
-export default PlayRoom;
+export default HostRoom;

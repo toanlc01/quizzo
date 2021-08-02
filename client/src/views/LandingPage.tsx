@@ -30,10 +30,6 @@ const LandingPage: React.FC = (props: any) => {
     fetchData();
   }, []);
 
-  // if (game.roomId) {
-  //   return <Redirect to="/play-room-guest" />;
-  // }
-
   return (
     <>
       {auth.isAuthenticated ? <LoggedInNavBar /> : <MyNavbar />}
