@@ -10,7 +10,7 @@ const PINField: React.FC = () => {
 
   const handleClick = () => {
     socket.emit('player-join-room', { roomId: pin });
-    socket.subcribe((err: any, data: any) => {
+    socket.subcribe(() => {
       history.push('/play-room-guest');
     });
   };
@@ -33,7 +33,6 @@ const PINField: React.FC = () => {
       <button className="enter-arrow-btn" type="button" onClick={handleClick}>
         <img src={rightArrow} className="right-arrow" />
       </button>
-      <pre>{JSON.stringify(pin, null, 2)}</pre>
     </div>
   );
 };

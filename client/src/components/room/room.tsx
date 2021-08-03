@@ -8,10 +8,11 @@ import { Dropdown } from 'react-bootstrap';
 import { RootState } from '../../store/store';
 import moment from 'moment';
 import { socket } from '../../views/LandingPage';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 const Room = (props: { room: any }) => {
   const game = useSelector((state: RootState) => state.game);
+  const history = useHistory();
 
   const handlePlay = () => {
     socket.emit('host-create-room', { roomId: props.room.pinCode });

@@ -8,6 +8,8 @@ interface State {
   userId: string | undefined;
   username: string | undefined;
   players: any[];
+  question: any | null;
+  answerStatus: 'done' | 'not done' | 'rank' | 'end';
 }
 
 const initialState: State = {
@@ -15,7 +17,9 @@ const initialState: State = {
   role: undefined,
   userId: undefined,
   username: undefined,
-  players: []
+  players: [],
+  question: null,
+  answerStatus: 'not done'
 };
 
 const gameSlice = createSlice({
@@ -24,15 +28,35 @@ const gameSlice = createSlice({
   reducers: {
     updateGame: (state, action) => {
       state = { ...state, ...action.payload };
-      console.log(state);
       return state;
     },
-    playerJoin: (state, action) => {
+    updatePlayers: (state, action) => {
       state.players = action.payload;
+    },
+    updateQuestion: (state, action) => {
+      state.question = action.payload.question;
+    },
+    updateAnswerStatus: (state, action) => {
+      state.answerStatus = action.payload.status;
+    },
+    endGame: (state) => {
+      state.roomId = undefined;
+      state.role = undefined;
+      state.userId = undefined;
+      state.username = undefined;
+      state.players = [];
+      state.question = null;
+      state.answerStatus = 'end';
     }
   },
   extraReducers: {}
 });
 
 export default gameSlice.reducer;
-export const { updateGame, playerJoin } = gameSlice.actions;
+export const {
+  updateGame,
+  updatePlayers,
+  updateQuestion,
+  updateAnswerStatus,
+  endGame
+} = gameSlice.actions;

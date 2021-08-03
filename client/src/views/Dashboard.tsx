@@ -8,7 +8,6 @@ const Dashboard = () => {
   return (
     <>
       <LoggedInNavBar />
-      <Link to="/room">Demo Room</Link>
     </>
   );
 };

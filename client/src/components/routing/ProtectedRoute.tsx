@@ -13,7 +13,6 @@ interface IProps {
 
 const ProtectedRoute = ({ component: Component, ...rest }: IProps) => {
   const auth = useSelector((state: RootState) => state.auth);
-  console.log(auth);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
