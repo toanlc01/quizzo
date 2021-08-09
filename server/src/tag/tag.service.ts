@@ -4,7 +4,7 @@ import { UpdateTagDto } from './dto/update-tag.dto';
 import { Tag } from './entities/tag.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getConnection } from 'typeorm';
-import { Question } from 'src/Question/entities/question.entity';
+import { Question } from 'src/question/entities/question.entity';
 
 @Injectable()
 export class TagService {

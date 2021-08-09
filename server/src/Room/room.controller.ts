@@ -13,7 +13,7 @@ import {
   DefaultValuePipe,
   ParseIntPipe
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/Auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RoomService } from './room.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';

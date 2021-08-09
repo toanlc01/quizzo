@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Room } from './room.entity';
+import { Room } from './entities/room.entity';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
-import { User } from 'src/User/user.entity';
+import { User } from 'src/user/entities/user.entity';
 import {
   IPaginationOptions,
   paginate,
   Pagination
 } from 'nestjs-typeorm-paginate';
-import { Question } from 'src/Question/entities/question.entity';
+import { Question } from 'src/question/entities/question.entity';
 import { Answer } from 'src/answer/entities/answer.entity';
 
 @Injectable()

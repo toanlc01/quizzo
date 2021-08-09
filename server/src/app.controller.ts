@@ -7,13 +7,13 @@ import {
   UseGuards,
   Response
 } from '@nestjs/common';
-import { LocalAuthGuard } from 'src/Auth/local.auth.guard';
-import { JwtAuthGuard } from './Auth/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/local.auth.guard';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { AppService } from './app.service';
-import { UserService } from './User/user.service';
-import { AuthService } from './Auth/auth.service';
-import { SignUpDto } from './Dto/user.dto';
-import { CurrentUser } from './User/user.decorator';
+import { UserService } from './user/user.service';
+import { AuthService } from './auth/auth.service';
+import { SignUpDto } from './dto/user.dto';
+import { CurrentUser } from './user/user.decorator';
 
 @Controller()
 export class AppController {

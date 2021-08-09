@@ -18,7 +18,7 @@ import {
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
-import { JwtAuthGuard } from '../Auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { Question } from './entities/question.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -26,7 +26,7 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { join } from 'path';
-import { CurrentUser } from 'src/User/user.decorator';
+import { CurrentUser } from 'src/user/user.decorator';
 
 let imageID = uuidv4();
 

@@ -17,8 +17,8 @@ import {
   UseInterceptors,
   UploadedFile
 } from '@nestjs/common';
-import { JwtAuthGuard } from '../Auth/jwt-auth.guard';
-import { User } from './user.entity';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 import path = require('path');
 import { join } from 'path';

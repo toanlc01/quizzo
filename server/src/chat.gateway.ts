@@ -9,8 +9,8 @@ import {
   OnGatewayDisconnect
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { QuestionService } from './Question/question.service';
-import { RoomService } from './Room/room.service';
+import { QuestionService } from './question/question.service';
+import { RoomService } from './room/room.service';
 
 let players = {};
 let rooms = {};

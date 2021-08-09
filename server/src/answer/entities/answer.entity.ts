@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
-import { Question } from 'src/Question/entities/question.entity';
+import { Question } from 'src/question/entities/question.entity';
 
 @Entity()
 export class Answer {

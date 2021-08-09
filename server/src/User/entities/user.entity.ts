@@ -1,5 +1,5 @@
-import { AnonymousUser } from 'src/AnonymousUsers/anonumousUser.entity';
-import { Room } from 'src/Room/room.entity';
+import { AnonymousUser } from 'src/anonymous/entities/anonumousUser.entity';
+import { Room } from 'src/room/entities/room.entity';
 import {
   Column,
   CreateDateColumn,
